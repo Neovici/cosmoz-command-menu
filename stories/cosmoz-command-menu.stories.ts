@@ -4,7 +4,6 @@ import { expect, fn, waitFor } from 'storybook/test';
 
 /** Set value on a search input and dispatch an input event */
 const typeInSearch = (input: HTMLInputElement, value: string) => {
-	// eslint-disable-next-line no-param-reassign
 	input.value = value;
 	input.dispatchEvent(new Event('input', { bubbles: true }));
 };
