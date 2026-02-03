@@ -7,6 +7,17 @@ const typeInSearch = (input: HTMLInputElement, value: string) => {
 	input.value = value;
 	input.dispatchEvent(new Event('input', { bubbles: true }));
 };
+
+/** Click the dropdown trigger button to open it */
+const openDropdown = async (
+	canvasElement: HTMLElement,
+	userEvent: { click: (el: HTMLElement) => Promise<void> },
+) => {
+	const button = canvasElement.querySelector(
+		'cosmoz-button[slot="button"]',
+	) as HTMLElement;
+	await userEvent.click(button);
+};
 import '@neovici/cosmoz-dropdown/cosmoz-dropdown-next';
 import '../src/cosmoz-command-menu';
 import '../src/cosmoz-keybinding-badge';
@@ -78,6 +89,8 @@ export const Basic: Story = {
 		</cosmoz-dropdown-next>
 	`,
 	play: async ({ canvasElement, args, userEvent }) => {
+		await openDropdown(canvasElement, userEvent);
+
 		const menu =
 			canvasElement.querySelector('cosmoz-command-menu') as HTMLElement;
 
@@ -119,7 +132,9 @@ export const WithSearch: Story = {
 			></cosmoz-command-menu>
 		</cosmoz-dropdown-next>
 	`,
-	play: async ({ canvasElement }) => {
+	play: async ({ canvasElement, userEvent }) => {
+		await openDropdown(canvasElement, userEvent);
+
 		const menu =
 			canvasElement.querySelector('cosmoz-command-menu') as HTMLElement;
 		const root = menu.shadowRoot!;
@@ -165,7 +180,9 @@ export const WithGroups: Story = {
 			></cosmoz-command-menu>
 		</cosmoz-dropdown-next>
 	`,
-	play: async ({ canvasElement }) => {
+	play: async ({ canvasElement, userEvent }) => {
+		await openDropdown(canvasElement, userEvent);
+
 		const menu =
 			canvasElement.querySelector('cosmoz-command-menu') as HTMLElement;
 		const root = menu.shadowRoot!;
@@ -204,7 +221,9 @@ export const WithGroupsAndSearch: Story = {
 			></cosmoz-command-menu>
 		</cosmoz-dropdown-next>
 	`,
-	play: async ({ canvasElement }) => {
+	play: async ({ canvasElement, userEvent }) => {
+		await openDropdown(canvasElement, userEvent);
+
 		const menu =
 			canvasElement.querySelector('cosmoz-command-menu') as HTMLElement;
 		const root = menu.shadowRoot!;
@@ -245,6 +264,8 @@ export const WithDisabledItems: Story = {
 		</cosmoz-dropdown-next>
 	`,
 	play: async ({ canvasElement, args, userEvent }) => {
+		await openDropdown(canvasElement, userEvent);
+
 		const menu =
 			canvasElement.querySelector('cosmoz-command-menu') as HTMLElement;
 		const root = menu.shadowRoot!;
@@ -304,7 +325,9 @@ export const AsyncSource: Story = {
 			</cosmoz-dropdown-next>
 		`;
 	},
-	play: async ({ canvasElement }) => {
+	play: async ({ canvasElement, userEvent }) => {
+		await openDropdown(canvasElement, userEvent);
+
 		const menu =
 			canvasElement.querySelector('cosmoz-command-menu') as HTMLElement;
 		const root = menu.shadowRoot!;
@@ -339,7 +362,9 @@ export const FilterMenu: Story = {
 			></cosmoz-command-menu>
 		</cosmoz-dropdown-next>
 	`,
-	play: async ({ canvasElement }) => {
+	play: async ({ canvasElement, userEvent }) => {
+		await openDropdown(canvasElement, userEvent);
+
 		const menu =
 			canvasElement.querySelector('cosmoz-command-menu') as HTMLElement;
 		const root = menu.shadowRoot!;
