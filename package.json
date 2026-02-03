@@ -72,7 +72,7 @@
 		"@commitlint/cli": "^20.0.0",
 		"@commitlint/config-conventional": "^20.0.0",
 		"@neovici/cfg": "^2.8.0",
-		"@neovici/cosmoz-dropdown": "^7.0.0",
+		"@neovici/cosmoz-dropdown": "^7.1.0",
 		"@neovici/testing": "^2.0.0",
 		"@open-wc/testing": "^4.0.0",
 		"@semantic-release/changelog": "^6.0.0",
