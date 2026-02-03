@@ -1,6 +1,13 @@
 import { html } from '@pionjs/pion';
 import type { Meta, StoryObj } from '@storybook/web-components';
-import { fn } from 'storybook/test';
+import { expect, fn, waitFor } from 'storybook/test';
+
+/** Set value on a search input and dispatch an input event */
+const typeInSearch = (input: HTMLInputElement, value: string) => {
+	// eslint-disable-next-line no-param-reassign
+	input.value = value;
+	input.dispatchEvent(new Event('input', { bubbles: true }));
+};
 import '@neovici/cosmoz-dropdown/cosmoz-dropdown-next';
 import '../src/cosmoz-command-menu';
 import '../src/cosmoz-keybinding-badge';
@@ -71,6 +78,27 @@ export const Basic: Story = {
 			></cosmoz-command-menu>
 		</cosmoz-dropdown-next>
 	`,
+	play: async ({ canvasElement, args, userEvent }) => {
+		const menu =
+			canvasElement.querySelector('cosmoz-command-menu') as HTMLElement;
+
+		// Wait for items to render in shadow DOM
+		await waitFor(() => {
+			const items = menu.shadowRoot!.querySelectorAll(
+				'cosmoz-button[role="menuitem"]',
+			);
+			expect(items.length).toBe(3);
+		});
+
+		// Click the first item
+		const firstItem = menu.shadowRoot!.querySelector(
+			'cosmoz-button[role="menuitem"]',
+		) as HTMLElement;
+		await userEvent.click(firstItem);
+
+		// Verify select event fired
+		await expect(args.onSelect).toHaveBeenCalledOnce();
+	},
 };
 
 /**
@@ -92,6 +120,37 @@ export const WithSearch: Story = {
 			></cosmoz-command-menu>
 		</cosmoz-dropdown-next>
 	`,
+	play: async ({ canvasElement }) => {
+		const menu =
+			canvasElement.querySelector('cosmoz-command-menu') as HTMLElement;
+		const root = menu.shadowRoot!;
+
+		// Wait for all 8 items to render
+		await waitFor(() => {
+			const items = root.querySelectorAll('cosmoz-button[role="menuitem"]');
+			expect(items.length).toBe(8);
+		});
+
+		// Search input should exist
+		const input = root.querySelector('.search-input') as HTMLInputElement;
+		expect(input).toBeTruthy();
+
+		// Type "copy" to filter
+		typeInSearch(input, 'copy');
+		await waitFor(() => {
+			const items = root.querySelectorAll('cosmoz-button[role="menuitem"]');
+			expect(items.length).toBe(1);
+			expect(items[0].textContent).toContain('Copy');
+		});
+
+		// Clear and type a non-matching query
+		typeInSearch(input, 'xyznonexistent');
+		await waitFor(() => {
+			const noResults = root.querySelector('.no-results');
+			expect(noResults).toBeTruthy();
+			expect(noResults!.textContent).toContain('No results found');
+		});
+	},
 };
 
 /**
@@ -107,6 +166,27 @@ export const WithGroups: Story = {
 			></cosmoz-command-menu>
 		</cosmoz-dropdown-next>
 	`,
+	play: async ({ canvasElement }) => {
+		const menu =
+			canvasElement.querySelector('cosmoz-command-menu') as HTMLElement;
+		const root = menu.shadowRoot!;
+
+		// Wait for all 7 grouped items to render
+		await waitFor(() => {
+			const items = root.querySelectorAll('cosmoz-button[role="menuitem"]');
+			expect(items.length).toBe(7);
+		});
+
+		// Assert 3 groups with correct labels
+		const groups = root.querySelectorAll('.group');
+		expect(groups.length).toBe(3);
+
+		const labels = root.querySelectorAll('.group-label');
+		expect(labels.length).toBe(3);
+		expect(labels[0].textContent).toContain('Clipboard');
+		expect(labels[1].textContent).toContain('Actions');
+		expect(labels[2].textContent).toContain('Danger Zone');
+	},
 };
 
 /**
@@ -125,6 +205,31 @@ export const WithGroupsAndSearch: Story = {
 			></cosmoz-command-menu>
 		</cosmoz-dropdown-next>
 	`,
+	play: async ({ canvasElement }) => {
+		const menu =
+			canvasElement.querySelector('cosmoz-command-menu') as HTMLElement;
+		const root = menu.shadowRoot!;
+
+		// Wait for all 7 items
+		await waitFor(() => {
+			const items = root.querySelectorAll('cosmoz-button[role="menuitem"]');
+			expect(items.length).toBe(7);
+		});
+
+		// Type "copy" to filter — only Clipboard group should remain
+		const input = root.querySelector('.search-input') as HTMLInputElement;
+		typeInSearch(input, 'copy');
+		await waitFor(() => {
+			const items = root.querySelectorAll('cosmoz-button[role="menuitem"]');
+			expect(items.length).toBe(1);
+
+			const groups = root.querySelectorAll('.group');
+			expect(groups.length).toBe(1);
+			expect(
+				groups[0].querySelector('.group-label')!.textContent,
+			).toContain('Clipboard');
+		});
+	},
 };
 
 /**
@@ -140,6 +245,30 @@ export const WithDisabledItems: Story = {
 			></cosmoz-command-menu>
 		</cosmoz-dropdown-next>
 	`,
+	play: async ({ canvasElement, args, userEvent }) => {
+		const menu =
+			canvasElement.querySelector('cosmoz-command-menu') as HTMLElement;
+		const root = menu.shadowRoot!;
+
+		// Wait for all 4 items to render
+		await waitFor(() => {
+			const items = root.querySelectorAll('cosmoz-button[role="menuitem"]');
+			expect(items.length).toBe(4);
+		});
+
+		// Click disabled "Edit" item (index 1) — should NOT fire select
+		const items = root.querySelectorAll('cosmoz-button[role="menuitem"]');
+		const disabledItem = items[1] as HTMLElement;
+		expect(disabledItem.hasAttribute('disabled')).toBe(true);
+		await userEvent.click(disabledItem);
+		await expect(args.onSelect).not.toHaveBeenCalled();
+
+		// Click enabled "Copy" item (index 0) — should fire select
+		const enabledItem = items[0] as HTMLElement;
+		expect(enabledItem.hasAttribute('disabled')).toBe(false);
+		await userEvent.click(enabledItem);
+		await expect(args.onSelect).toHaveBeenCalledOnce();
+	},
 };
 
 /**
@@ -160,7 +289,7 @@ export const AsyncSource: Story = {
 									item.label.toLowerCase().includes(query.toLowerCase()),
 							),
 						),
-					800,
+					150,
 				),
 			);
 
@@ -170,11 +299,28 @@ export const AsyncSource: Story = {
 				<cosmoz-command-menu
 					.source=${asyncSource}
 					?searchable=${args.searchable}
-					placeholder="Search (with 800ms delay)..."
+					placeholder="Search (with 150ms delay)..."
 					@select=${args.onSelect}
 				></cosmoz-command-menu>
 			</cosmoz-dropdown-next>
 		`;
+	},
+	play: async ({ canvasElement }) => {
+		const menu =
+			canvasElement.querySelector('cosmoz-command-menu') as HTMLElement;
+		const root = menu.shadowRoot!;
+
+		// After async resolution, items should render and loading should disappear
+		await waitFor(
+			() => {
+				const items = root.querySelectorAll(
+					'cosmoz-button[role="menuitem"]',
+				);
+				expect(items.length).toBe(8);
+				expect(root.querySelector('.loading')).toBeNull();
+			},
+			{ timeout: 2000 },
+		);
 	},
 };
 
@@ -194,4 +340,31 @@ export const FilterMenu: Story = {
 			></cosmoz-command-menu>
 		</cosmoz-dropdown-next>
 	`,
+	play: async ({ canvasElement }) => {
+		const menu =
+			canvasElement.querySelector('cosmoz-command-menu') as HTMLElement;
+		const root = menu.shadowRoot!;
+
+		// Wait for all 11 filter items to render
+		await waitFor(() => {
+			const items = root.querySelectorAll('cosmoz-button[role="menuitem"]');
+			expect(items.length).toBe(11);
+		});
+
+		// Assert 3 groups: Status, Priority, Type
+		const labels = root.querySelectorAll('.group-label');
+		expect(labels.length).toBe(3);
+		expect(labels[0].textContent).toContain('Status');
+		expect(labels[1].textContent).toContain('Priority');
+		expect(labels[2].textContent).toContain('Type');
+
+		// Type "bug" to filter — only 1 item should remain
+		const input = root.querySelector('.search-input') as HTMLInputElement;
+		typeInSearch(input, 'bug');
+		await waitFor(() => {
+			const items = root.querySelectorAll('cosmoz-button[role="menuitem"]');
+			expect(items.length).toBe(1);
+			expect(items[0].textContent).toContain('Bug');
+		});
+	},
 };

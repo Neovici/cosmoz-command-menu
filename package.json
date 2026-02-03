@@ -75,12 +75,16 @@
 		"@neovici/cosmoz-dropdown": "^7.1.0",
 		"@neovici/testing": "^2.0.0",
 		"@open-wc/testing": "^4.0.0",
+		"@playwright/test": "^1.58.1",
 		"@semantic-release/changelog": "^6.0.0",
 		"@semantic-release/git": "^10.0.0",
 		"@storybook/addon-docs": "^10.0.0",
-		"@storybook/web-components-vite": "^10.0.0",
+		"@storybook/addon-vitest": "^10.2.4",
+		"@storybook/web-components-vite": "^10.2.4",
 		"@types/mocha": "^10.0.6",
 		"@types/node": "^24.0.0",
+		"@vitest/browser": "^4.0.18",
+		"@vitest/browser-playwright": "^4.0.18",
 		"@web/test-runner-playwright": "^0.11.1",
 		"eslint": "^9.0.0",
 		"http-server": "^14.1.1",
@@ -89,7 +93,8 @@
 		"semantic-release": "^25.0.0",
 		"sinon": "^19.0.0",
 		"storybook": "^10.0.0",
-		"typescript": "^5.4.3"
+		"typescript": "^5.4.3",
+		"vitest": "^4.0.18"
 	},
 	"overrides": {
 		"conventional-changelog-conventionalcommits": ">= 8.0.0"
