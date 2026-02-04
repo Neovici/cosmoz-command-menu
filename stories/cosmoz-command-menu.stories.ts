@@ -227,8 +227,15 @@ export const WithDisabledItems: Story = {
  * The menu shows a loading state while waiting.
  */
 export const AsyncSource: Story = {
-	args: { searchable: true },
+	args: { searchable: true, delay: 150 },
+	argTypes: {
+		delay: {
+			control: { type: 'number', min: 0, step: 50 },
+			description: 'Simulated async delay in milliseconds',
+		},
+	},
 	render: (args) => {
+		const { delay = 150 } = args as StoryArgs & { delay: number };
 		const asyncSource = (query: string) =>
 			new Promise<MenuItem[]>((resolve) =>
 				setTimeout(
@@ -240,7 +247,7 @@ export const AsyncSource: Story = {
 									item.label.toLowerCase().includes(query.toLowerCase()),
 							),
 						),
-					150,
+					delay,
 				),
 			);
 
@@ -248,7 +255,7 @@ export const AsyncSource: Story = {
 			<cosmoz-command-menu
 				.source=${asyncSource}
 				?searchable=${args.searchable}
-				placeholder="Search (with 150ms delay)..."
+				placeholder="Search (with ${delay}ms delay)..."
 				@select=${args.onSelect}
 			></cosmoz-command-menu>
 		`;
