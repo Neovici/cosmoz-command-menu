@@ -283,12 +283,13 @@ export const FilterMenu: Story = {
 	render: (args) => html`
 		<cosmoz-dropdown-next placement=${(args as StoryArgs & { placement: string }).placement ?? 'bottom span-right'}>
 			<cosmoz-button slot="button">${filterIcon} Filters</cosmoz-button>
-			<cosmoz-command-menu
-				.source=${makeSearchable(filterItems)}
-				?searchable=${args.searchable}
-				placeholder="Filter by..."
-				@select=${args.onSelect}
-			></cosmoz-command-menu>
+		<cosmoz-command-menu
+			autofocus
+			.source=${makeSearchable(filterItems)}
+			?searchable=${args.searchable}
+			placeholder="Filter by..."
+			@select=${args.onSelect}
+		></cosmoz-command-menu>
 		</cosmoz-dropdown-next>
 	`,
 	play: async ({ canvasElement, canvas, step, userEvent }) => {
