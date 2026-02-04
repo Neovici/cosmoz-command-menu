@@ -1,3 +1,4 @@
+import { searchSmIcon } from '@neovici/cosmoz-icons/untitled';
 import { normalize } from '@neovici/cosmoz-tokens/normalize';
 import {
 	component,
@@ -149,20 +150,7 @@ const style = css`
 	}
 `;
 
-// Search icon SVG
-/* eslint-disable max-len */
-const searchIcon = html`
-	<svg class="search-icon" viewBox="0 0 20 20" fill="none">
-		<path
-			d="M17.5 17.5L13.875 13.875M15.8333 9.16667C15.8333 12.8486 12.8486 15.8333 9.16667 15.8333C5.48477 15.8333 2.5 12.8486 2.5 9.16667C2.5 5.48477 5.48477 2.5 9.16667 2.5C12.8486 2.5 15.8333 5.48477 15.8333 9.16667Z"
-			stroke="currentColor"
-			stroke-width="1.66667"
-			stroke-linecap="round"
-			stroke-linejoin="round"
-		/>
-	</svg>
-`;
-/* eslint-enable max-len */
+const searchIcon = searchSmIcon({ className: 'search-icon' });
 
 interface MenuProps {
 	source?: MenuSource;
