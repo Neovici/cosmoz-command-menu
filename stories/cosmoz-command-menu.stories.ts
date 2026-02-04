@@ -66,7 +66,6 @@ type Story = StoryObj<StoryArgs>;
 export const Basic: Story = {
 	render: (args) => html`
 		<cosmoz-command-menu
-			autofocus
 			.source=${basicItems}
 			@select=${args.onSelect}
 		></cosmoz-command-menu>
@@ -360,6 +359,7 @@ export const Actions: Story = {
 		<cosmoz-dropdown-next placement=${(args as StoryArgs & { placement: string }).placement ?? 'bottom span-right'}>
 			<cosmoz-button slot="button">Actions</cosmoz-button>
 			<cosmoz-command-menu
+				autofocus
 				.source=${basicItems}
 				@select=${args.onSelect}
 			></cosmoz-command-menu>
