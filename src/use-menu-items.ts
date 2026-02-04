@@ -22,6 +22,13 @@ export const useMenuItems = ({
 	host,
 	itemsContainerRef,
 }: UseMenuItemsOptions) => {
+	// Check that focus is inside this menu instance, so that when multiple
+	// menus are visible only the focused one responds to keybindings.
+	const focusIsWithin = useCallback(() => {
+		const active = document.activeElement;
+		return active != null && host.contains(active);
+	}, [host]);
+
 	// Start with no highlight (-1)
 	const [index, setIndex] = useState(-1);
 
@@ -94,28 +101,45 @@ export const useMenuItems = ({
 			activity: MENU_NAVIGATE_DOWN,
 			callback: navigateDown,
 			element: () => host,
+			check: focusIsWithin,
 		},
-		[navigateDown, host],
+		[navigateDown, host, focusIsWithin],
 	);
 	useActivity(
-		{ activity: MENU_NAVIGATE_UP, callback: navigateUp, element: () => host },
-		[navigateUp, host],
+		{
+			activity: MENU_NAVIGATE_UP,
+			callback: navigateUp,
+			element: () => host,
+			check: focusIsWithin,
+		},
+		[navigateUp, host, focusIsWithin],
 	);
 	useActivity(
 		{
 			activity: MENU_NAVIGATE_HOME,
 			callback: navigateHome,
 			element: () => host,
+			check: focusIsWithin,
 		},
-		[navigateHome, host],
+		[navigateHome, host, focusIsWithin],
 	);
 	useActivity(
-		{ activity: MENU_NAVIGATE_END, callback: navigateEnd, element: () => host },
-		[navigateEnd, host],
+		{
+			activity: MENU_NAVIGATE_END,
+			callback: navigateEnd,
+			element: () => host,
+			check: focusIsWithin,
+		},
+		[navigateEnd, host, focusIsWithin],
 	);
 	useActivity(
-		{ activity: MENU_SELECT, callback: selectCurrent, element: () => host },
-		[selectCurrent, host],
+		{
+			activity: MENU_SELECT,
+			callback: selectCurrent,
+			element: () => host,
+			check: focusIsWithin,
+		},
+		[selectCurrent, host, focusIsWithin],
 	);
 
 	return {
