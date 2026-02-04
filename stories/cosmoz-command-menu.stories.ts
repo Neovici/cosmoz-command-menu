@@ -339,7 +339,7 @@ export const AsyncSource: Story = {
 					'cosmoz-button[role="menuitem"]',
 				);
 				expect(items.length).toBe(8);
-				expect(root.querySelector('.loading')).toBeNull();
+				expect(root.querySelector('.loading-text')).toBeNull();
 			},
 			{ timeout: 2000 },
 		);

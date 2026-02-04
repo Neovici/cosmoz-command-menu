@@ -49,7 +49,7 @@ const style = css`
 		bottom: 0;
 		left: 0;
 		right: 0;
-		height: 2px;
+		height: 1px;
 		background: linear-gradient(
 			90deg,
 			transparent,
@@ -61,8 +61,8 @@ const style = css`
 	}
 
 	.search.loading::after {
-		opacity: 1;
-		animation: shimmer 1.5s infinite linear;
+		opacity: 0.4;
+		animation: shimmer 2s infinite linear;
 	}
 
 	@keyframes shimmer {
@@ -109,7 +109,7 @@ const style = css`
 		font-size: var(--cz-text-sm, 0.875rem);
 	}
 
-	.loading {
+	.loading-text {
 		padding: calc(var(--cz-spacing, 0.25rem) * 4);
 		text-align: center;
 		color: var(--cz-color-text-tertiary, #475467);
@@ -321,7 +321,7 @@ const CosmozCommandMenu = ({
 		>
 			${error ? html`<div class="error">${error}</div>` : nothing}
 			${loading && items.length === 0
-				? html`<div class="loading">Loading...</div>`
+				? html`<div class="loading-text">Loading...</div>`
 				: nothing}
 			${!loading && !hasItems && query.trim().length > 0
 				? html`
