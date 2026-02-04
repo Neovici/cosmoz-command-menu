@@ -1,4 +1,4 @@
-import{u as j,r as oe,a as ne,K as se,b as re,c as T,A as y,d as D,e as V,f as c,g as B,h as x,M as ae,i as ce,j as le,k as ie,l as ue,n as Z,m as me}from"./iframe-D51dhq2K.js";import"./preload-helper-PPVm8Dsz.js";function U(e){return j(()=>({current:e}),[])}const de={CHILD:2},pe=e=>(...t)=>({_$litDirective$:e,values:t});class he{constructor(t){}get _$AU(){return this._$AM._$AU}_$AT(t,o,n){this._$Ct=t,this._$AM=o,this._$Ci=n}_$AS(t,o){return this.update(t,o)}update(t,o){return this.render(...o)}}const _=(e,t)=>{const o=e._$AN;if(o===void 0)return!1;for(const n of o)n._$AO?.(t,!1),_(n,t);return!0},H=e=>{let t,o;do{if((t=e._$AM)===void 0)break;o=t._$AN,o.delete(e),e=t}while(o?.size===0)},X=e=>{for(let t;t=e._$AM;e=t){let o=t._$AN;if(o===void 0)t._$AN=o=new Set;else if(o.has(e))break;o.add(e),fe(t)}};function be(e){this._$AN!==void 0?(H(this),this._$AM=e,X(this)):this._$AM=e}function ge(e,t=!1,o=0){const n=this._$AH,r=this._$AN;if(r!==void 0&&r.size!==0)if(t)if(Array.isArray(n))for(let s=o;s<n.length;s++)_(n[s],!1),H(n[s]);else n!=null&&(_(n,!1),H(n));else _(this,e)}const fe=e=>{e.type==de.CHILD&&(e._$AP??=ge,e._$AQ??=be)};class ye extends he{constructor(){super(...arguments),this._$AN=void 0}_$AT(t,o,n){super._$AT(t,o,n),X(this),this.isConnected=t._$AU}_$AO(t,o=!0){t!==this.isConnected&&(this.isConnected=t,t?this.reconnected?.():this.disconnected?.()),o&&(_(this,t),H(this))}setValue(t){if(oe(this._$Ct))this._$Ct._$AI(t,this);else{const o=[...this._$Ct._$AH];o[this._$Ci]=t,this._$Ct._$AI(o,this,0)}}disconnected(){}reconnected(){}}const S=(e,t)=>{const o=ne(se),n=re(e);T(()=>o(n),t)},F=new WeakMap,K=pe(class extends ye{render(e){return y}update(e,[t]){const o=t!==this.G;return o&&this.G!==void 0&&this.rt(void 0),(o||this.lt!==this.ct)&&(this.G=t,this.ht=e.options?.host,this.rt(this.ct=e.element)),y}rt(e){if(this.isConnected||(e=void 0),typeof this.G=="function"){const t=this.ht??globalThis;let o=F.get(t);o===void 0&&(o=new WeakMap,F.set(t,o)),o.get(this.G)!==void 0&&this.G.call(this.ht,void 0),o.set(this.G,e),e!==void 0&&this.G.call(this.ht,e)}else this.G.value=e}get lt(){return typeof this.G=="function"?F.get(this.ht??globalThis)?.get(this.G):this.G?.value}disconnected(){this.lt===this.ct&&this.rt(void 0)}reconnected(){this.rt(this.ct)}}),ve=e=>{if(e.newState!=="open")return;const n=e.target.querySelector("slot:not([name])")?.assignedElements({flatten:!0})??[];for(const r of n){const s=r.matches("[autofocus]")?r:r.querySelector("[autofocus]");if(s instanceof HTMLElement){s.focus();break}}},xe=D`
+import{u as j,r as oe,a as ne,K as se,b as re,c as T,A as y,d as D,e as V,f as c,g as B,h as x,M as ae,i as ce,j as le,k as ie,l as ue,n as Z,m as me}from"./iframe-Dz2SKVTn.js";import"./preload-helper-PPVm8Dsz.js";function U(e){return j(()=>({current:e}),[])}const de={CHILD:2},pe=e=>(...t)=>({_$litDirective$:e,values:t});class he{constructor(t){}get _$AU(){return this._$AM._$AU}_$AT(t,o,n){this._$Ct=t,this._$AM=o,this._$Ci=n}_$AS(t,o){return this.update(t,o)}update(t,o){return this.render(...o)}}const _=(e,t)=>{const o=e._$AN;if(o===void 0)return!1;for(const n of o)n._$AO?.(t,!1),_(n,t);return!0},H=e=>{let t,o;do{if((t=e._$AM)===void 0)break;o=t._$AN,o.delete(e),e=t}while(o?.size===0)},X=e=>{for(let t;t=e._$AM;e=t){let o=t._$AN;if(o===void 0)t._$AN=o=new Set;else if(o.has(e))break;o.add(e),fe(t)}};function be(e){this._$AN!==void 0?(H(this),this._$AM=e,X(this)):this._$AM=e}function ge(e,t=!1,o=0){const n=this._$AH,r=this._$AN;if(r!==void 0&&r.size!==0)if(t)if(Array.isArray(n))for(let s=o;s<n.length;s++)_(n[s],!1),H(n[s]);else n!=null&&(_(n,!1),H(n));else _(this,e)}const fe=e=>{e.type==de.CHILD&&(e._$AP??=ge,e._$AQ??=be)};class ye extends he{constructor(){super(...arguments),this._$AN=void 0}_$AT(t,o,n){super._$AT(t,o,n),X(this),this.isConnected=t._$AU}_$AO(t,o=!0){t!==this.isConnected&&(this.isConnected=t,t?this.reconnected?.():this.disconnected?.()),o&&(_(this,t),H(this))}setValue(t){if(oe(this._$Ct))this._$Ct._$AI(t,this);else{const o=[...this._$Ct._$AH];o[this._$Ci]=t,this._$Ct._$AI(o,this,0)}}disconnected(){}reconnected(){}}const S=(e,t)=>{const o=ne(se),n=re(e);T(()=>o(n),t)},F=new WeakMap,K=pe(class extends ye{render(e){return y}update(e,[t]){const o=t!==this.G;return o&&this.G!==void 0&&this.rt(void 0),(o||this.lt!==this.ct)&&(this.G=t,this.ht=e.options?.host,this.rt(this.ct=e.element)),y}rt(e){if(this.isConnected||(e=void 0),typeof this.G=="function"){const t=this.ht??globalThis;let o=F.get(t);o===void 0&&(o=new WeakMap,F.set(t,o)),o.get(this.G)!==void 0&&this.G.call(this.ht,void 0),o.set(this.G,e),e!==void 0&&this.G.call(this.ht,e)}else this.G.value=e}get lt(){return typeof this.G=="function"?F.get(this.ht??globalThis)?.get(this.G):this.G?.value}disconnected(){this.lt===this.ct&&this.rt(void 0)}reconnected(){this.rt(this.ct)}}),ve=e=>{if(e.newState!=="open")return;const n=e.target.querySelector("slot:not([name])")?.assignedElements({flatten:!0})??[];for(const r of n){const s=r.matches("[autofocus]")?r:r.querySelector("[autofocus]");if(s instanceof HTMLElement){s.focus();break}}},xe=D`
 	:host {
 		display: inline-block;
 		anchor-name: --dropdown-anchor;
@@ -89,7 +89,7 @@ import{u as j,r as oe,a as ne,K as se,b as re,c as T,A as y,d as D,e as V,f as c
 		bottom: 0;
 		left: 0;
 		right: 0;
-		height: 2px;
+		height: 1px;
 		background: linear-gradient(
 			90deg,
 			transparent,
@@ -101,8 +101,8 @@ import{u as j,r as oe,a as ne,K as se,b as re,c as T,A as y,d as D,e as V,f as c
 	}
 
 	.search.loading::after {
-		opacity: 1;
-		animation: shimmer 1.5s infinite linear;
+		opacity: 0.4;
+		animation: shimmer 2s infinite linear;
 	}
 
 	@keyframes shimmer {
@@ -149,7 +149,7 @@ import{u as j,r as oe,a as ne,K as se,b as re,c as T,A as y,d as D,e as V,f as c
 		font-size: var(--cz-text-sm, 0.875rem);
 	}
 
-	.loading {
+	.loading-text {
 		padding: calc(var(--cz-spacing, 0.25rem) * 4);
 		text-align: center;
 		color: var(--cz-color-text-tertiary, #475467);
@@ -237,7 +237,7 @@ import{u as j,r as oe,a as ne,K as se,b as re,c as T,A as y,d as D,e as V,f as c
 			${K(h=>{r.current=h})}
 		>
 			${d?c`<div class="error">${d}</div>`:y}
-			${p&&m.length===0?c`<div class="loading">Loading...</div>`:y}
+			${p&&m.length===0?c`<div class="loading-text">Loading...</div>`:y}
 			${!p&&!v&&s.trim().length>0?c`
 						<slot name="no-results">
 							<div class="no-results">No results found</div>
@@ -471,7 +471,7 @@ import{u as j,r as oe,a as ne,K as se,b as re,c as T,A as y,d as D,e as V,f as c
                     @select=${e.onSelect}
                 ></cosmoz-command-menu>
             </cosmoz-dropdown-next>
-        `},play:async({canvasElement:e,userEvent:t})=>{await C(e,t);const n=e.querySelector("cosmoz-command-menu").shadowRoot;await g(()=>{const r=n.querySelectorAll('cosmoz-button[role="menuitem"]');a(r.length).toBe(8),a(n.querySelector(".loading")).toBeNull()},{timeout:2e3})}},q={args:{searchable:!0},render:e=>c`
+        `},play:async({canvasElement:e,userEvent:t})=>{await C(e,t);const n=e.querySelector("cosmoz-command-menu").shadowRoot;await g(()=>{const r=n.querySelectorAll('cosmoz-button[role="menuitem"]');a(r.length).toBe(8),a(n.querySelector(".loading-text")).toBeNull()},{timeout:2e3})}},q={args:{searchable:!0},render:e=>c`
         <cosmoz-dropdown-next placement=${e.placement}>
             <cosmoz-button slot="button">${Le} Filters</cosmoz-button>
             <cosmoz-command-menu
@@ -704,7 +704,7 @@ Click the button to open, use arrow keys to navigate.`,...$.parameters?.docs?.de
     await waitFor(() => {
       const items = root.querySelectorAll('cosmoz-button[role="menuitem"]');
       expect(items.length).toBe(8);
-      expect(root.querySelector('.loading')).toBeNull();
+      expect(root.querySelector('.loading-text')).toBeNull();
     }, {
       timeout: 2000
     });
