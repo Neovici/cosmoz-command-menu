@@ -62,7 +62,7 @@ const style = css`
 	}
 
 	.search.loading::after {
-		opacity: 0.4;
+		opacity: 1;
 		animation: shimmer 2s infinite linear;
 	}
 
