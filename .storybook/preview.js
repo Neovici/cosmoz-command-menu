@@ -29,7 +29,7 @@ export default {
 			source: {
 				excludeDecorators: true,
 				transform: (source) => {
-					const match = source.match(/html`([\s\S]*?)`/);
+					const match = source.match(/html`([\s\S]*?)`/u);
 					return match?.[1]?.trim() ?? source;
 				},
 			},
