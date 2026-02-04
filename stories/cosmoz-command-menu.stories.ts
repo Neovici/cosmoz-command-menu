@@ -322,3 +322,39 @@ export const FilterMenu: Story = {
 		});
 	},
 };
+
+/**
+ * An actions menu shown inside a dropdown, without search.
+ */
+export const Actions: Story = {
+	argTypes: {
+		placement: {
+			control: 'select',
+			options: placementOptions,
+			description:
+				'CSS anchor position-area value. See MDN for all available options.',
+		},
+	},
+	render: (args) => html`
+		<cosmoz-dropdown-next placement=${(args as StoryArgs & { placement: string }).placement ?? 'bottom span-right'}>
+			<cosmoz-button slot="button">Actions</cosmoz-button>
+			<cosmoz-command-menu
+				.source=${basicItems}
+				@select=${args.onSelect}
+			></cosmoz-command-menu>
+		</cosmoz-dropdown-next>
+	`,
+	play: async ({ canvasElement, canvas, step, userEvent }) => {
+		await step('Open dropdown', async () => {
+			const button = canvasElement.querySelector(
+				'cosmoz-button[slot="button"]',
+			) as HTMLElement;
+			await userEvent.click(button);
+		});
+
+		await step('Renders 3 menu items', async () => {
+			const items = await canvas.findAllByShadowRole('menuitem');
+			expect(items).toHaveLength(3);
+		});
+	},
+};
