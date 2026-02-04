@@ -292,7 +292,7 @@ export const FilterMenu: Story = {
 		></cosmoz-command-menu>
 		</cosmoz-dropdown-next>
 	`,
-	play: async ({ canvasElement, canvas, step, userEvent }) => {
+	play: async ({ canvasElement, canvas, args, step, userEvent }) => {
 		await step('Open dropdown', async () => {
 			const button = canvasElement.querySelector(
 				'cosmoz-button[slot="button"]',
@@ -320,6 +320,26 @@ export const FilterMenu: Story = {
 				expect(items[0].textContent).toContain('Bug');
 			});
 		});
+
+		await step('ArrowDown highlights the first item', async () => {
+			const input = canvas.getByShadowRole('textbox') as HTMLInputElement;
+			typeInSearch(input, '');
+			await waitFor(async () => {
+				const items = await canvas.findAllByShadowRole('menuitem');
+				expect(items).toHaveLength(11);
+			});
+
+			await userEvent.keyboard('{ArrowDown}');
+			await waitFor(() => {
+				const items = canvas.getAllByShadowRole('menuitem');
+				expect(items[0].hasAttribute('data-highlighted')).toBe(true);
+			});
+		});
+
+		await step('Enter selects the highlighted item', async () => {
+			await userEvent.keyboard('{Enter}');
+			await expect(args.onSelect).toHaveBeenCalledOnce();
+		});
 	},
 };
 
@@ -344,7 +364,7 @@ export const Actions: Story = {
 			></cosmoz-command-menu>
 		</cosmoz-dropdown-next>
 	`,
-	play: async ({ canvasElement, canvas, step, userEvent }) => {
+	play: async ({ canvasElement, canvas, args, step, userEvent }) => {
 		await step('Open dropdown', async () => {
 			const button = canvasElement.querySelector(
 				'cosmoz-button[slot="button"]',
@@ -355,6 +375,37 @@ export const Actions: Story = {
 		await step('Renders 3 menu items', async () => {
 			const items = await canvas.findAllByShadowRole('menuitem');
 			expect(items).toHaveLength(3);
+		});
+
+		await step('ArrowDown highlights the first item', async () => {
+			await userEvent.keyboard('{ArrowDown}');
+			await waitFor(() => {
+				const items = canvas.getAllByShadowRole('menuitem');
+				expect(items[0].hasAttribute('data-highlighted')).toBe(true);
+			});
+		});
+
+		await step('ArrowDown again highlights the second item', async () => {
+			await userEvent.keyboard('{ArrowDown}');
+			await waitFor(() => {
+				const items = canvas.getAllByShadowRole('menuitem');
+				expect(items[0].hasAttribute('data-highlighted')).toBe(false);
+				expect(items[1].hasAttribute('data-highlighted')).toBe(true);
+			});
+		});
+
+		await step('ArrowUp highlights the first item again', async () => {
+			await userEvent.keyboard('{ArrowUp}');
+			await waitFor(() => {
+				const items = canvas.getAllByShadowRole('menuitem');
+				expect(items[0].hasAttribute('data-highlighted')).toBe(true);
+				expect(items[1].hasAttribute('data-highlighted')).toBe(false);
+			});
+		});
+
+		await step('Enter selects the highlighted item', async () => {
+			await userEvent.keyboard('{Enter}');
+			await expect(args.onSelect).toHaveBeenCalledOnce();
 		});
 	},
 };
