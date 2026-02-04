@@ -275,6 +275,38 @@ export const AsyncSource: Story = {
 };
 
 /**
+ * When the async source rejects, the menu displays an error message.
+ */
+export const ErrorState: Story = {
+	args: { searchable: true },
+	render: (args) => {
+		const failingSource = () =>
+			new Promise<MenuItem[]>((_resolve, reject) =>
+				setTimeout(() => reject(new Error('Network error')), 50),
+			);
+
+		return html`
+			<cosmoz-command-menu
+				.source=${failingSource}
+				?searchable=${args.searchable}
+				placeholder=${args.placeholder}
+				@select=${args.onSelect}
+			></cosmoz-command-menu>
+		`;
+	},
+	play: async ({ canvas, step }) => {
+		await step('Shows error message when source rejects', async () => {
+			await canvas.findByShadowText('Network error');
+		});
+
+		await step('No menu items are rendered', async () => {
+			const items = canvas.queryAllByShadowRole('menuitem');
+			expect(items).toHaveLength(0);
+		});
+	},
+};
+
+/**
  * A filter-style menu with count badges and groups, shown inside a dropdown.
  */
 export const FilterMenu: Story = {
