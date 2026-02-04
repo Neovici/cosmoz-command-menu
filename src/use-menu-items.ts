@@ -26,7 +26,7 @@ export const useMenuItems = ({
 	// menus are visible only the focused one responds to keybindings.
 	const focusIsWithin = useCallback(() => {
 		const active = document.activeElement;
-		return active != null && host.contains(active);
+		return active != null && (host.contains(active) || active.contains(host));
 	}, [host]);
 
 	// Start with no highlight (-1)
