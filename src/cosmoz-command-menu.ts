@@ -116,6 +116,13 @@ const style = css`
 		color: var(--cz-color-text-tertiary, #475467);
 	}
 
+	.label {
+		display: inline-flex;
+		flex: 1;
+		text-align: left;
+		min-width: 0;
+	}
+
 	.error {
 		padding: calc(var(--cz-spacing, 0.25rem) * 4);
 		text-align: center;
@@ -185,7 +192,7 @@ const renderItem = ({
 		@mousedown=${(e: Event) => e.preventDefault()}
 	>
 		${item.icon ?? nothing}
-		<cosmoz-menu-label>${item.label}</cosmoz-menu-label>
+		<span class="label">${item.label}</span>
 		${item.suffix ?? nothing}
 	</cosmoz-button>
 `;

@@ -14,7 +14,6 @@ const typeInSearch = (input: HTMLInputElement, value: string) => {
 import '@neovici/cosmoz-dropdown/cosmoz-dropdown-next';
 import '../src/cosmoz-command-menu';
 import '../src/cosmoz-keybinding-badge';
-import '../src/cosmoz-menu-label';
 import type { MenuItem } from '../src/types';
 import {
 	basicItems,
