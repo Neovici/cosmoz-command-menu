@@ -1,4 +1,4 @@
-import{u as Z,r as de,a as me,K as ue,b as pe,c as F,A as f,d as U,e as V,f as i,w as b,g as $,h as D,M as he,i as ge,j as we,k as ye,l as fe,n as J,m as be}from"./iframe-BFzeJQ-M.js";import"./preload-helper-PPVm8Dsz.js";function ee(e){return Z(()=>({current:e}),[])}const ve={CHILD:2},$e=e=>(...t)=>({_$litDirective$:e,values:t});class xe{constructor(t){}get _$AU(){return this._$AM._$AU}_$AT(t,o,n){this._$Ct=t,this._$AM=o,this._$Ci=n}_$AS(t,o){return this.update(t,o)}update(t,o){return this.render(...o)}}const N=(e,t)=>{const o=e._$AN;if(o===void 0)return!1;for(const n of o)n._$AO?.(t,!1),N(n,t);return!0},P=e=>{let t,o;do{if((t=e._$AM)===void 0)break;o=t._$AN,o.delete(e),e=t}while(o?.size===0)},te=e=>{for(let t;t=e._$AM;e=t){let o=t._$AN;if(o===void 0)t._$AN=o=new Set;else if(o.has(e))break;o.add(e),Ce(t)}};function Se(e){this._$AN!==void 0?(P(this),this._$AM=e,te(this)):this._$AM=e}function Ae(e,t=!1,o=0){const n=this._$AH,s=this._$AN;if(s!==void 0&&s.size!==0)if(t)if(Array.isArray(n))for(let a=o;a<n.length;a++)N(n[a],!1),P(n[a]);else n!=null&&(N(n,!1),P(n));else N(this,e)}const Ce=e=>{e.type==ve.CHILD&&(e._$AP??=Ae,e._$AQ??=Se)};class ze extends xe{constructor(){super(...arguments),this._$AN=void 0}_$AT(t,o,n){super._$AT(t,o,n),te(this),this.isConnected=t._$AU}_$AO(t,o=!0){t!==this.isConnected&&(this.isConnected=t,t?this.reconnected?.():this.disconnected?.()),o&&(N(this,t),P(this))}setValue(t){if(de(this._$Ct))this._$Ct._$AI(t,this);else{const o=[...this._$Ct._$AH];o[this._$Ci]=t,this._$Ct._$AI(o,this,0)}}disconnected(){}reconnected(){}}const B=(e,t)=>{const o=me(ue),n=pe(e);F(()=>o(n),t)},Y=new WeakMap,oe=$e(class extends ze{render(e){return f}update(e,[t]){const o=t!==this.G;return o&&this.G!==void 0&&this.rt(void 0),(o||this.lt!==this.ct)&&(this.G=t,this.ht=e.options?.host,this.rt(this.ct=e.element)),f}rt(e){if(this.isConnected||(e=void 0),typeof this.G=="function"){const t=this.ht??globalThis;let o=Y.get(t);o===void 0&&(o=new WeakMap,Y.set(t,o)),o.get(this.G)!==void 0&&this.G.call(this.ht,void 0),o.set(this.G,e),e!==void 0&&this.G.call(this.ht,e)}else this.G.value=e}get lt(){return typeof this.G=="function"?Y.get(this.ht??globalThis)?.get(this.G):this.G?.value}disconnected(){this.lt===this.ct&&this.rt(void 0)}reconnected(){this.rt(this.ct)}}),Be=e=>{if(e.newState!=="open")return;const n=e.target.querySelector("slot:not([name])")?.assignedElements({flatten:!0})??[];for(const s of n){const a=s.matches("[autofocus]")?s:s.querySelector("[autofocus]");if(a instanceof HTMLElement){a.focus();break}}},ke=U`
+import{u as q,r as de,a as me,K as ue,b as pe,c as F,A as f,d as Y,e as Z,f as i,w as b,g as $,h as D,M as he,i as ge,j as we,k as ye,l as fe,n as J,m as be}from"./iframe-DtmJBT9h.js";import"./preload-helper-PPVm8Dsz.js";function ee(e){return q(()=>({current:e}),[])}const ve={CHILD:2},$e=e=>(...t)=>({_$litDirective$:e,values:t});class xe{constructor(t){}get _$AU(){return this._$AM._$AU}_$AT(t,o,n){this._$Ct=t,this._$AM=o,this._$Ci=n}_$AS(t,o){return this.update(t,o)}update(t,o){return this.render(...o)}}const N=(e,t)=>{const o=e._$AN;if(o===void 0)return!1;for(const n of o)n._$AO?.(t,!1),N(n,t);return!0},P=e=>{let t,o;do{if((t=e._$AM)===void 0)break;o=t._$AN,o.delete(e),e=t}while(o?.size===0)},te=e=>{for(let t;t=e._$AM;e=t){let o=t._$AN;if(o===void 0)t._$AN=o=new Set;else if(o.has(e))break;o.add(e),Ce(t)}};function Se(e){this._$AN!==void 0?(P(this),this._$AM=e,te(this)):this._$AM=e}function Ae(e,t=!1,o=0){const n=this._$AH,s=this._$AN;if(s!==void 0&&s.size!==0)if(t)if(Array.isArray(n))for(let a=o;a<n.length;a++)N(n[a],!1),P(n[a]);else n!=null&&(N(n,!1),P(n));else N(this,e)}const Ce=e=>{e.type==ve.CHILD&&(e._$AP??=Ae,e._$AQ??=Se)};class ze extends xe{constructor(){super(...arguments),this._$AN=void 0}_$AT(t,o,n){super._$AT(t,o,n),te(this),this.isConnected=t._$AU}_$AO(t,o=!0){t!==this.isConnected&&(this.isConnected=t,t?this.reconnected?.():this.disconnected?.()),o&&(N(this,t),P(this))}setValue(t){if(de(this._$Ct))this._$Ct._$AI(t,this);else{const o=[...this._$Ct._$AH];o[this._$Ci]=t,this._$Ct._$AI(o,this,0)}}disconnected(){}reconnected(){}}const B=(e,t)=>{const o=me(ue),n=pe(e);F(()=>o(n),t)},W=new WeakMap,oe=$e(class extends ze{render(e){return f}update(e,[t]){const o=t!==this.G;return o&&this.G!==void 0&&this.rt(void 0),(o||this.lt!==this.ct)&&(this.G=t,this.ht=e.options?.host,this.rt(this.ct=e.element)),f}rt(e){if(this.isConnected||(e=void 0),typeof this.G=="function"){const t=this.ht??globalThis;let o=W.get(t);o===void 0&&(o=new WeakMap,W.set(t,o)),o.get(this.G)!==void 0&&this.G.call(this.ht,void 0),o.set(this.G,e),e!==void 0&&this.G.call(this.ht,e)}else this.G.value=e}get lt(){return typeof this.G=="function"?W.get(this.ht??globalThis)?.get(this.G):this.G?.value}disconnected(){this.lt===this.ct&&this.rt(void 0)}reconnected(){this.rt(this.ct)}}),Be=e=>{if(e.newState!=="open")return;const n=e.target.querySelector("slot:not([name])")?.assignedElements({flatten:!0})??[];for(const s of n){const a=s.matches("[autofocus]")?s:s.querySelector("[autofocus]");if(a instanceof HTMLElement){a.focus();break}}},ke=Y`
 	:host {
 		display: inline-block;
 		anchor-name: --dropdown-anchor;
@@ -55,7 +55,7 @@ import{u as Z,r as de,a as me,K as ue,b as pe,c as F,A as f,d as U,e as V,f as i
 		>
 			<slot></slot>
 		</div>
-	`};customElements.define("cosmoz-dropdown-next",V(Re,{styleSheets:[ke],observedAttributes:["placement"],shadowRootInit:{mode:"open",delegatesFocus:!0}}));const m=e=>e??f;function v(e,t,o){return e?t(e):o?.(e)}const Ie=({slot:e,title:t,className:o,width:n="24",height:s="24",styles:a}={})=>i`
+	`};customElements.define("cosmoz-dropdown-next",Z(Re,{styleSheets:[ke],observedAttributes:["placement"],shadowRootInit:{mode:"open",delegatesFocus:!0}}));const m=e=>e??f;function v(e,t,o){return e?t(e):o?.(e)}const Ie=({slot:e,title:t,className:o,width:n="24",height:s="24",styles:a}={})=>i`
   <svg
     slot=${m(e)}
     class=${`clipboard-icon ${o??""}`}
@@ -263,7 +263,7 @@ import{u as Z,r as de,a as me,K as ue,b as pe,c as F,A as f,d as U,e as V,f as i
       d="M16 6v-.8c0-1.12 0-1.68-.218-2.108a2 2 0 0 0-.874-.874C14.48 2 13.92 2 12.8 2h-1.6c-1.12 0-1.68 0-2.108.218a2 2 0 0 0-.874.874C8 3.52 8 4.08 8 5.2V6m2 5.5v5m4-5v5M3 6h18m-2 0v11.2c0 1.68 0 2.52-.327 3.162a3 3 0 0 1-1.311 1.311C16.72 22 15.88 22 14.2 22H9.8c-1.68 0-2.52 0-3.162-.327a3 3 0 0 1-1.311-1.311C5 19.72 5 18.88 5 17.2V6"
     />
   </svg>
-`,Ge=({items:e,onSelect:t,host:o,itemsContainerRef:n})=>{const s=$(()=>{const l=document.activeElement;return l!=null&&(o.contains(l)||l.contains(o))},[o]),[a,c]=D(-1);F(()=>{c(-1)},[e]),F(()=>{if(a<0)return;n.current?.querySelector(`[data-index="${a}"]`)?.scrollIntoView({block:"nearest"})},[a,n]);const u=$((l,A)=>{const h=e.length;if(h===0)return-1;let C=l;C<0&&(C=A===1?-1:h);for(let Q=0;Q<h;Q++)if(C=(C+A+h)%h,!e[C]?.disabled)return C;return-1},[e]),w=$(()=>{c(l=>u(l,1))},[u]),p=$(()=>{c(l=>u(l,-1))},[u]),y=$(()=>{const l=e.findIndex(A=>!A.disabled);c(l)},[e]),z=$(()=>{for(let l=e.length-1;l>=0;l--)if(!e[l].disabled){c(l);return}},[e]),O=$(()=>{if(a>=0&&a<e.length){const l=e[a];l&&!l.disabled&&t(l)}},[e,a,t]);return B({activity:he,callback:w,element:()=>o,check:s},[w,o,s]),B({activity:ge,callback:p,element:()=>o,check:s},[p,o,s]),B({activity:we,callback:y,element:()=>o,check:s},[y,o,s]),B({activity:ye,callback:z,element:()=>o,check:s},[z,o,s]),B({activity:fe,callback:O,element:()=>o,check:s},[O,o,s]),{index:a,highlight:$(l=>c(l),[])}},Oe=(e,t)=>{if(!e)return Promise.resolve([]);const o=typeof e=="function"?e(t):e;return Promise.resolve(o).then(n=>n??[])},Pe=(e,t)=>{const[o,n]=D([]),[s,a]=D(!1),[c,u]=D(null);return F(()=>{let p=!1;return a(!0),u(null),Oe(e,t).then(y=>{p||n(y)}).catch(y=>{p||u(y?.message??"Failed to load items")}).finally(()=>{p||a(!1)}),()=>{p=!0}},[e,t]),{items:Z(()=>{if(!t.trim())return o;const p=t.toLowerCase();return o.filter(y=>y.label.toLowerCase().includes(p))},[o,t]),loading:s,error:c}},Ue=U`
+`,Ge=({items:e,onSelect:t,host:o,itemsContainerRef:n})=>{const s=$(()=>{const l=document.activeElement;return l!=null&&(o.contains(l)||l.contains(o))},[o]),[a,c]=D(-1);F(()=>{c(-1)},[e]),F(()=>{if(a<0)return;n.current?.querySelector(`[data-index="${a}"]`)?.scrollIntoView({block:"nearest"})},[a,n]);const u=$((l,A)=>{const h=e.length;if(h===0)return-1;let C=l;C<0&&(C=A===1?-1:h);for(let Q=0;Q<h;Q++)if(C=(C+A+h)%h,!e[C]?.disabled)return C;return-1},[e]),w=$(()=>{c(l=>u(l,1))},[u]),p=$(()=>{c(l=>u(l,-1))},[u]),y=$(()=>{const l=e.findIndex(A=>!A.disabled);c(l)},[e]),z=$(()=>{for(let l=e.length-1;l>=0;l--)if(!e[l].disabled){c(l);return}},[e]),O=$(()=>{if(a>=0&&a<e.length){const l=e[a];l&&!l.disabled&&t(l)}},[e,a,t]);return B({activity:he,callback:w,element:()=>o,check:s},[w,o,s]),B({activity:ge,callback:p,element:()=>o,check:s},[p,o,s]),B({activity:we,callback:y,element:()=>o,check:s},[y,o,s]),B({activity:ye,callback:z,element:()=>o,check:s},[z,o,s]),B({activity:fe,callback:O,element:()=>o,check:s},[O,o,s]),{index:a,highlight:$(l=>c(l),[])}},Oe=(e,t)=>{if(!e)return Promise.resolve([]);const o=typeof e=="function"?e(t):e;return Promise.resolve(o).then(n=>n??[])},Pe=(e,t)=>{const[o,n]=D([]),[s,a]=D(!1),[c,u]=D(null);return F(()=>{let p=!1;return a(!0),u(null),Oe(e,t).then(y=>{p||n(y)}).catch(y=>{p||u(y?.message??"Failed to load items")}).finally(()=>{p||a(!1)}),()=>{p=!0}},[e,t]),{items:q(()=>{if(!t.trim())return o;const p=t.toLowerCase();return o.filter(y=>y.label.toLowerCase().includes(p))},[o,t]),loading:s,error:c}},Ue=Y`
 	:host {
 		display: flex;
 		flex-direction: column;
@@ -363,6 +363,13 @@ import{u as Z,r as de,a as me,K as ue,b as pe,c as F,A as f,d as U,e as V,f as i
 		color: var(--cz-color-text-tertiary, #475467);
 	}
 
+	.label {
+		display: inline-flex;
+		flex: 1;
+		text-align: left;
+		min-width: 0;
+	}
+
 	.error {
 		padding: calc(var(--cz-spacing, 0.25rem) * 4);
 		text-align: center;
@@ -408,7 +415,7 @@ import{u as Z,r as de,a as me,K as ue,b as pe,c as F,A as f,d as U,e as V,f as i
 		@mousedown=${a=>a.preventDefault()}
 	>
 		${e.icon??f}
-		<cosmoz-menu-label>${e.label}</cosmoz-menu-label>
+		<span class="label">${e.label}</span>
 		${e.suffix??f}
 	</cosmoz-button>
 `,We=({grouped:e,items:t,highlightedIndex:o,highlight:n,select:s})=>{const a=new Map;return t.forEach((c,u)=>a.set(c,u)),Array.from(e.entries()).map(([c,u])=>{const w=u.map(p=>je({item:p,index:a.get(p)??-1,highlightedIndex:o,highlight:n,select:s}));return c?i`
@@ -416,7 +423,7 @@ import{u as Z,r as de,a as me,K as ue,b as pe,c as F,A as f,d as U,e as V,f as i
 					<div class="group-label">${c}</div>
 					${w}
 				</div>
-			`:w})},qe=e=>{const t=new Map;for(const o of e){const n=o.group||"";t.has(n)||t.set(n,[]),t.get(n).push(o)}return t},Ye=({source:e,searchable:t=!1,placeholder:o="Search..."})=>{const n=be(),s=ee(),[a,c]=D(""),{items:u,loading:w,error:p}=Pe(e,a),y=Z(()=>qe(u),[u]),z=$(h=>{n.dispatchEvent(new CustomEvent("select",{bubbles:!0,composed:!0,detail:{item:h}}))},[n]),{index:O,highlight:l}=Ge({items:u,onSelect:z,host:n,itemsContainerRef:s});F(()=>{n.setAttribute("role","menu")},[n]);const A=u.length>0;return i`
+			`:w})},qe=e=>{const t=new Map;for(const o of e){const n=o.group||"";t.has(n)||t.set(n,[]),t.get(n).push(o)}return t},Ye=({source:e,searchable:t=!1,placeholder:o="Search..."})=>{const n=be(),s=ee(),[a,c]=D(""),{items:u,loading:w,error:p}=Pe(e,a),y=q(()=>qe(u),[u]),z=$(h=>{n.dispatchEvent(new CustomEvent("select",{bubbles:!0,composed:!0,detail:{item:h}}))},[n]),{index:O,highlight:l}=Ge({items:u,onSelect:z,host:n,itemsContainerRef:s});F(()=>{n.setAttribute("role","menu")},[n]);const A=u.length>0;return i`
 		${t?i`
 					<div class="search${w?" loading":""}">
 						${Ve}
@@ -443,7 +450,7 @@ import{u as Z,r as de,a as me,K as ue,b as pe,c as F,A as f,d as U,e as V,f as i
 					`:f}
 			${A?We({grouped:y,items:u,highlightedIndex:O,highlight:l,select:z}):f}
 		</div>
-	`};customElements.define("cosmoz-command-menu",V(Ye,{styleSheets:[J,Ue],observedAttributes:["searchable","placeholder"],shadowRootInit:{mode:"open",delegatesFocus:!0}}));const Ze=U`
+	`};customElements.define("cosmoz-command-menu",Z(Ye,{styleSheets:[J,Ue],observedAttributes:["searchable","placeholder"],shadowRootInit:{mode:"open",delegatesFocus:!0}}));const Ze=Y`
 	:host {
 		display: inline-flex;
 		align-items: center;
@@ -455,14 +462,7 @@ import{u as Z,r as de,a as me,K as ue,b as pe,c as F,A as f,d as U,e as V,f as i
 			calc(var(--cz-spacing, 0.25rem) * 1.5);
 		border-radius: var(--cz-radius-sm, 0.375rem);
 	}
-`,Xe=()=>i`<slot></slot>`;customElements.define("cosmoz-keybinding-badge",V(Xe,{styleSheets:[J,Ze]}));const Ke=U`
-	:host {
-		display: inline-flex;
-		flex: 1;
-		text-align: left;
-		min-width: 0;
-	}
-`,Qe=()=>i`<slot></slot>`;customElements.define("cosmoz-menu-label",V(Qe,{styleSheets:[Ke]}));const S="prefix",j=Me({slot:S}),W=Le({slot:S}),q=Fe({slot:S}),X=Ne({slot:S}),ne=He({slot:S}),ae=Te({slot:S}),se=Ie({slot:S}),Je=Ee({slot:S}),et=_e({slot:S}),d=e=>i`
+`,Xe=()=>i`<slot></slot>`;customElements.define("cosmoz-keybinding-badge",Z(Xe,{styleSheets:[J,Ze]}));const S="prefix",U=Me({slot:S}),V=Le({slot:S}),j=Fe({slot:S}),X=Ne({slot:S}),ne=He({slot:S}),ae=Te({slot:S}),se=Ie({slot:S}),Ke=Ee({slot:S}),Qe=_e({slot:S}),d=e=>i`
 	<cosmoz-keybinding-badge>${e}</cosmoz-keybinding-badge>
 `,g=e=>i`
 	<span
@@ -475,7 +475,7 @@ import{u as Z,r as de,a as me,K as ue,b as pe,c as F,A as f,d as U,e as V,f as i
 		"
 		>${e}</span
 	>
-`,re=["bottom span-right","bottom span-left","bottom","top span-right","top span-left","top","right span-bottom","right span-top","right","left span-bottom","left span-top","left","bottom center","top center","center"],ie=[{label:"Copy",value:"copy",icon:j,suffix:d("⌘C")},{label:"Edit",value:"edit",icon:W,suffix:d("⌘E")},{label:"Delete",value:"delete",icon:q,suffix:d("⌘⌫")}],ce=[{label:"Copy",value:"copy",icon:j,suffix:d("⌘C")},{label:"Cut",value:"cut",icon:ae,suffix:d("⌘X")},{label:"Paste",value:"paste",icon:se,suffix:d("⌘V")},{label:"Edit",value:"edit",icon:W,suffix:d("⌘E")},{label:"Delete",value:"delete",icon:q,suffix:d("⌘⌫")},{label:"Duplicate",value:"duplicate",icon:Je,suffix:d("⌘D")},{label:"Share",value:"share",icon:X,suffix:d("⌘⇧S")},{label:"Download",value:"download",icon:ne,suffix:d("⌘⇧D")}],le=[{label:"Copy",value:"copy",group:"Clipboard",icon:j,suffix:d("⌘C")},{label:"Cut",value:"cut",group:"Clipboard",icon:ae,suffix:d("⌘X")},{label:"Paste",value:"paste",group:"Clipboard",icon:se,suffix:d("⌘V")},{label:"Edit",value:"edit",group:"Actions",icon:W,suffix:d("⌘E")},{label:"Share",value:"share",group:"Actions",icon:X,suffix:d("⌘⇧S")},{label:"Download",value:"download",group:"Actions",icon:ne,suffix:d("⌘⇧D")},{label:"Delete",value:"delete",group:"Danger Zone",icon:q,suffix:d("⌘⌫")}],tt=[{label:"Copy",value:"copy",icon:j,suffix:d("⌘C")},{label:"Edit",value:"edit",icon:W,suffix:d("⌘E"),disabled:!0},{label:"Share",value:"share",icon:X,suffix:d("⌘⇧S")},{label:"Delete",value:"delete",icon:q,suffix:d("⌘⌫"),disabled:!0}],ot=[{label:"Active",value:"status:active",group:"Status",suffix:g(24)},{label:"Pending",value:"status:pending",group:"Status",suffix:g(12)},{label:"Completed",value:"status:completed",group:"Status",suffix:g(89)},{label:"Archived",value:"status:archived",group:"Status",suffix:g(5)},{label:"Urgent",value:"priority:urgent",group:"Priority",suffix:g(3)},{label:"High",value:"priority:high",group:"Priority",suffix:g(8)},{label:"Medium",value:"priority:medium",group:"Priority",suffix:g(45)},{label:"Low",value:"priority:low",group:"Priority",suffix:g(67)},{label:"Bug",value:"type:bug",group:"Type",suffix:g(15)},{label:"Feature",value:"type:feature",group:"Type",suffix:g(32)},{label:"Task",value:"type:task",group:"Type",suffix:g(78)}],K=e=>t=>{if(!t.trim())return e;const o=t.toLowerCase();return e.filter(n=>n.label.toLowerCase().includes(o))},{expect:r,fn:nt,waitFor:x}=__STORYBOOK_MODULE_TEST__,G=(e,t)=>{e.value=t,e.dispatchEvent(new Event("input",{bubbles:!0}))},rt={title:"Cosmoz Command Menu",component:"cosmoz-command-menu",tags:["autodocs"],argTypes:{searchable:{control:"boolean",description:"Show search input"},placeholder:{control:"text",description:"Search input placeholder text"},onSelect:{action:"select",description:"Fired when a menu item is selected"}},args:{searchable:!1,placeholder:"Search...",onSelect:nt()}},k={render:e=>i`
+`,re=["bottom span-right","bottom span-left","bottom","top span-right","top span-left","top","right span-bottom","right span-top","right","left span-bottom","left span-top","left","bottom center","top center","center"],ie=[{label:"Copy",value:"copy",icon:U,suffix:d("⌘C")},{label:"Edit",value:"edit",icon:V,suffix:d("⌘E")},{label:"Delete",value:"delete",icon:j,suffix:d("⌘⌫")}],ce=[{label:"Copy",value:"copy",icon:U,suffix:d("⌘C")},{label:"Cut",value:"cut",icon:ae,suffix:d("⌘X")},{label:"Paste",value:"paste",icon:se,suffix:d("⌘V")},{label:"Edit",value:"edit",icon:V,suffix:d("⌘E")},{label:"Delete",value:"delete",icon:j,suffix:d("⌘⌫")},{label:"Duplicate",value:"duplicate",icon:Ke,suffix:d("⌘D")},{label:"Share",value:"share",icon:X,suffix:d("⌘⇧S")},{label:"Download",value:"download",icon:ne,suffix:d("⌘⇧D")}],le=[{label:"Copy",value:"copy",group:"Clipboard",icon:U,suffix:d("⌘C")},{label:"Cut",value:"cut",group:"Clipboard",icon:ae,suffix:d("⌘X")},{label:"Paste",value:"paste",group:"Clipboard",icon:se,suffix:d("⌘V")},{label:"Edit",value:"edit",group:"Actions",icon:V,suffix:d("⌘E")},{label:"Share",value:"share",group:"Actions",icon:X,suffix:d("⌘⇧S")},{label:"Download",value:"download",group:"Actions",icon:ne,suffix:d("⌘⇧D")},{label:"Delete",value:"delete",group:"Danger Zone",icon:j,suffix:d("⌘⌫")}],Je=[{label:"Copy",value:"copy",icon:U,suffix:d("⌘C")},{label:"Edit",value:"edit",icon:V,suffix:d("⌘E"),disabled:!0},{label:"Share",value:"share",icon:X,suffix:d("⌘⇧S")},{label:"Delete",value:"delete",icon:j,suffix:d("⌘⌫"),disabled:!0}],et=[{label:"Active",value:"status:active",group:"Status",suffix:g(24)},{label:"Pending",value:"status:pending",group:"Status",suffix:g(12)},{label:"Completed",value:"status:completed",group:"Status",suffix:g(89)},{label:"Archived",value:"status:archived",group:"Status",suffix:g(5)},{label:"Urgent",value:"priority:urgent",group:"Priority",suffix:g(3)},{label:"High",value:"priority:high",group:"Priority",suffix:g(8)},{label:"Medium",value:"priority:medium",group:"Priority",suffix:g(45)},{label:"Low",value:"priority:low",group:"Priority",suffix:g(67)},{label:"Bug",value:"type:bug",group:"Type",suffix:g(15)},{label:"Feature",value:"type:feature",group:"Type",suffix:g(32)},{label:"Task",value:"type:task",group:"Type",suffix:g(78)}],K=e=>t=>{if(!t.trim())return e;const o=t.toLowerCase();return e.filter(n=>n.label.toLowerCase().includes(o))},{expect:r,fn:tt,waitFor:x}=__STORYBOOK_MODULE_TEST__,G=(e,t)=>{e.value=t,e.dispatchEvent(new Event("input",{bubbles:!0}))},at={title:"Cosmoz Command Menu",component:"cosmoz-command-menu",tags:["autodocs"],argTypes:{searchable:{control:"boolean",description:"Show search input"},placeholder:{control:"text",description:"Search input placeholder text"},onSelect:{action:"select",description:"Fired when a menu item is selected"}},args:{searchable:!1,placeholder:"Search...",onSelect:tt()}},k={render:e=>i`
         <cosmoz-command-menu
             .source=${ie}
             @select=${e.onSelect}
@@ -501,7 +501,7 @@ import{u as Z,r as de,a as me,K as ue,b as pe,c as F,A as f,d as U,e as V,f as i
         ></cosmoz-command-menu>
     `,play:async({canvas:e,step:t})=>{await t("Renders all 7 grouped items",async()=>{const o=await e.findAllByShadowRole("menuitem");r(o).toHaveLength(7)}),await t('Filtering by "copy" shows 1 item in Clipboard group only',async()=>{const o=e.getByShadowRole("textbox");G(o,"copy"),await x(async()=>{const n=await e.findAllByShadowRole("menuitem");r(n).toHaveLength(1);const s=e.getAllByShadowRole("group");r(s).toHaveLength(1),e.getByShadowRole("group",{name:"Clipboard"})})})}},E={render:e=>i`
         <cosmoz-command-menu
-            .source=${tt}
+            .source=${Je}
             @select=${e.onSelect}
         ></cosmoz-command-menu>
     `,play:async({canvas:e,args:t,step:o,userEvent:n})=>{await o("Clicking disabled item does not fire select",async()=>{const s=await e.findAllByShadowRole("menuitem");r(s).toHaveLength(4);const a=s[1];r(a.hasAttribute("disabled")).toBe(!0),await n.click(a),await r(t.onSelect).not.toHaveBeenCalled()}),await o("Clicking enabled item fires select once",async()=>{const a=(await e.findAllByShadowRole("menuitem"))[0];r(a.hasAttribute("disabled")).toBe(!1),await n.click(a),await r(t.onSelect).toHaveBeenCalledOnce()})}},H={args:{searchable:!0,delay:150},argTypes:{delay:{control:{type:"number",min:0,step:50},description:"Simulated async delay in milliseconds"}},render:e=>{const{delay:t=150}=e;return i`
@@ -520,10 +520,10 @@ import{u as Z,r as de,a as me,K as ue,b as pe,c as F,A as f,d as U,e as V,f as i
             ></cosmoz-command-menu>
         `,play:async({canvas:e,step:t})=>{await t("Shows error message when source rejects",async()=>{await e.findByShadowText("Network error")}),await t("No menu items are rendered",async()=>{const o=e.queryAllByShadowRole("menuitem");r(o).toHaveLength(0)})}},_={args:{searchable:!0},argTypes:{placement:{control:"select",options:re,description:"CSS anchor position-area value. See MDN for all available options."}},render:e=>i`
         <cosmoz-dropdown-next placement=${e.placement??"bottom span-right"}>
-            <cosmoz-button slot="button">${et} Filters</cosmoz-button>
+            <cosmoz-button slot="button">${Qe} Filters</cosmoz-button>
         <cosmoz-command-menu
             autofocus
-            .source=${K(ot)}
+            .source=${K(et)}
             ?searchable=${e.searchable}
             placeholder="Filter by..."
             @select=${e.onSelect}
@@ -904,4 +904,4 @@ The menu shows a loading state while waiting.`,...H.parameters?.docs?.descriptio
       await expect(args.onSelect).toHaveBeenCalledOnce();
     });
   }
-}`,...T.parameters?.docs?.source},description:{story:"An actions menu shown inside a dropdown, without search.",...T.parameters?.docs?.description}}};const it=["Basic","WithSearch","WithGroups","WithGroupsAndSearch","WithDisabledItems","AsyncSource","ErrorState","FilterMenu","Actions"];export{T as Actions,H as AsyncSource,k as Basic,L as ErrorState,_ as FilterMenu,E as WithDisabledItems,I as WithGroups,M as WithGroupsAndSearch,R as WithSearch,it as __namedExportsOrder,rt as default};
+}`,...T.parameters?.docs?.source},description:{story:"An actions menu shown inside a dropdown, without search.",...T.parameters?.docs?.description}}};const st=["Basic","WithSearch","WithGroups","WithGroupsAndSearch","WithDisabledItems","AsyncSource","ErrorState","FilterMenu","Actions"];export{T as Actions,H as AsyncSource,k as Basic,L as ErrorState,_ as FilterMenu,E as WithDisabledItems,I as WithGroups,M as WithGroupsAndSearch,R as WithSearch,st as __namedExportsOrder,at as default};
