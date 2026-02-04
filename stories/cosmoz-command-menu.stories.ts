@@ -66,6 +66,7 @@ type Story = StoryObj<StoryArgs>;
 export const Basic: Story = {
 	render: (args) => html`
 		<cosmoz-command-menu
+			autofocus
 			.source=${basicItems}
 			@select=${args.onSelect}
 		></cosmoz-command-menu>
