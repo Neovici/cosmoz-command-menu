@@ -234,7 +234,7 @@ const renderGroupedItems = ({
 
 		if (groupLabel) {
 			return html`
-				<div class="group">
+				<div class="group" role="group" aria-label=${groupLabel}>
 					<div class="group-label">${groupLabel}</div>
 					${renderedItems}
 				</div>

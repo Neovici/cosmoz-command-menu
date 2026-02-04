@@ -2,7 +2,10 @@ import { html } from '@pionjs/pion';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { expect, fn, waitFor } from 'storybook/test';
 
-/** Set value on a search input and dispatch an input event */
+/** Set value on a search input and dispatch an input event.
+ *  Needed because userEvent.type() doesn't work with Pion's
+ *  property-bound inputs (.value=${query}) — Pion re-renders
+ *  and overwrites the DOM value between keystrokes. */
 const typeInSearch = (input: HTMLInputElement, value: string) => {
 	input.value = value;
 	input.dispatchEvent(new Event('input', { bubbles: true }));
@@ -88,28 +91,21 @@ export const Basic: Story = {
 			></cosmoz-command-menu>
 		</cosmoz-dropdown-next>
 	`,
-	play: async ({ canvasElement, args, userEvent }) => {
-		await openDropdown(canvasElement, userEvent);
-
-		const menu =
-			canvasElement.querySelector('cosmoz-command-menu') as HTMLElement;
-
-		// Wait for items to render in shadow DOM
-		await waitFor(() => {
-			const items = menu.shadowRoot!.querySelectorAll(
-				'cosmoz-button[role="menuitem"]',
-			);
-			expect(items.length).toBe(3);
+	play: async ({ canvasElement, canvas, args, step, userEvent }) => {
+		await step('Open dropdown', async () => {
+			await openDropdown(canvasElement, userEvent);
 		});
 
-		// Click the first item
-		const firstItem = menu.shadowRoot!.querySelector(
-			'cosmoz-button[role="menuitem"]',
-		) as HTMLElement;
-		await userEvent.click(firstItem);
+		await step('Renders 3 menu items', async () => {
+			const items = await canvas.findAllByShadowRole('menuitem');
+			expect(items).toHaveLength(3);
+		});
 
-		// Verify select event fired
-		await expect(args.onSelect).toHaveBeenCalledOnce();
+		await step('Clicking an item fires select event', async () => {
+			const items = await canvas.findAllByShadowRole('menuitem');
+			await userEvent.click(items[0]);
+			await expect(args.onSelect).toHaveBeenCalledOnce();
+		});
 	},
 };
 
@@ -132,37 +128,30 @@ export const WithSearch: Story = {
 			></cosmoz-command-menu>
 		</cosmoz-dropdown-next>
 	`,
-	play: async ({ canvasElement, userEvent }) => {
-		await openDropdown(canvasElement, userEvent);
-
-		const menu =
-			canvasElement.querySelector('cosmoz-command-menu') as HTMLElement;
-		const root = menu.shadowRoot!;
-
-		// Wait for all 8 items to render
-		await waitFor(() => {
-			const items = root.querySelectorAll('cosmoz-button[role="menuitem"]');
-			expect(items.length).toBe(8);
+	play: async ({ canvasElement, canvas, step, userEvent }) => {
+		await step('Open dropdown', async () => {
+			await openDropdown(canvasElement, userEvent);
 		});
 
-		// Search input should exist
-		const input = root.querySelector('.search-input') as HTMLInputElement;
-		expect(input).toBeTruthy();
-
-		// Type "copy" to filter
-		typeInSearch(input, 'copy');
-		await waitFor(() => {
-			const items = root.querySelectorAll('cosmoz-button[role="menuitem"]');
-			expect(items.length).toBe(1);
-			expect(items[0].textContent).toContain('Copy');
+		await step('Renders all 8 items initially', async () => {
+			const items = await canvas.findAllByShadowRole('menuitem');
+			expect(items).toHaveLength(8);
 		});
 
-		// Clear and type a non-matching query
-		typeInSearch(input, 'xyznonexistent');
-		await waitFor(() => {
-			const noResults = root.querySelector('.no-results');
-			expect(noResults).toBeTruthy();
-			expect(noResults!.textContent).toContain('No results found');
+		await step('Filtering by "copy" shows 1 result', async () => {
+			const input = canvas.getByShadowRole('textbox') as HTMLInputElement;
+			typeInSearch(input, 'copy');
+			await waitFor(async () => {
+				const items = await canvas.findAllByShadowRole('menuitem');
+				expect(items).toHaveLength(1);
+				expect(items[0].textContent).toContain('Copy');
+			});
+		});
+
+		await step('Non-matching query shows "No results found"', async () => {
+			const input = canvas.getByShadowRole('textbox') as HTMLInputElement;
+			typeInSearch(input, 'xyznonexistent');
+			await canvas.findByShadowText('No results found');
 		});
 	},
 };
@@ -180,28 +169,27 @@ export const WithGroups: Story = {
 			></cosmoz-command-menu>
 		</cosmoz-dropdown-next>
 	`,
-	play: async ({ canvasElement, userEvent }) => {
-		await openDropdown(canvasElement, userEvent);
-
-		const menu =
-			canvasElement.querySelector('cosmoz-command-menu') as HTMLElement;
-		const root = menu.shadowRoot!;
-
-		// Wait for all 7 grouped items to render
-		await waitFor(() => {
-			const items = root.querySelectorAll('cosmoz-button[role="menuitem"]');
-			expect(items.length).toBe(7);
+	play: async ({ canvasElement, canvas, step, userEvent }) => {
+		await step('Open dropdown', async () => {
+			await openDropdown(canvasElement, userEvent);
 		});
 
-		// Assert 3 groups with correct labels
-		const groups = root.querySelectorAll('.group');
-		expect(groups.length).toBe(3);
+		await step('Renders 7 items in 3 groups', async () => {
+			const items = await canvas.findAllByShadowRole('menuitem');
+			expect(items).toHaveLength(7);
 
-		const labels = root.querySelectorAll('.group-label');
-		expect(labels.length).toBe(3);
-		expect(labels[0].textContent).toContain('Clipboard');
-		expect(labels[1].textContent).toContain('Actions');
-		expect(labels[2].textContent).toContain('Danger Zone');
+			const groups = canvas.getAllByShadowRole('group');
+			expect(groups).toHaveLength(3);
+		});
+
+		await step(
+			'Groups are labeled Clipboard, Actions, Danger Zone',
+			async () => {
+				canvas.getByShadowRole('group', { name: 'Clipboard' });
+				canvas.getByShadowRole('group', { name: 'Actions' });
+				canvas.getByShadowRole('group', { name: 'Danger Zone' });
+			},
+		);
 	},
 };
 
@@ -221,32 +209,31 @@ export const WithGroupsAndSearch: Story = {
 			></cosmoz-command-menu>
 		</cosmoz-dropdown-next>
 	`,
-	play: async ({ canvasElement, userEvent }) => {
-		await openDropdown(canvasElement, userEvent);
-
-		const menu =
-			canvasElement.querySelector('cosmoz-command-menu') as HTMLElement;
-		const root = menu.shadowRoot!;
-
-		// Wait for all 7 items
-		await waitFor(() => {
-			const items = root.querySelectorAll('cosmoz-button[role="menuitem"]');
-			expect(items.length).toBe(7);
+	play: async ({ canvasElement, canvas, step, userEvent }) => {
+		await step('Open dropdown', async () => {
+			await openDropdown(canvasElement, userEvent);
 		});
 
-		// Type "copy" to filter — only Clipboard group should remain
-		const input = root.querySelector('.search-input') as HTMLInputElement;
-		typeInSearch(input, 'copy');
-		await waitFor(() => {
-			const items = root.querySelectorAll('cosmoz-button[role="menuitem"]');
-			expect(items.length).toBe(1);
-
-			const groups = root.querySelectorAll('.group');
-			expect(groups.length).toBe(1);
-			expect(
-				groups[0].querySelector('.group-label')!.textContent,
-			).toContain('Clipboard');
+		await step('Renders all 7 grouped items', async () => {
+			const items = await canvas.findAllByShadowRole('menuitem');
+			expect(items).toHaveLength(7);
 		});
+
+		await step(
+			'Filtering by "copy" shows 1 item in Clipboard group only',
+			async () => {
+				const input = canvas.getByShadowRole('textbox') as HTMLInputElement;
+				typeInSearch(input, 'copy');
+				await waitFor(async () => {
+					const items = await canvas.findAllByShadowRole('menuitem');
+					expect(items).toHaveLength(1);
+
+					const groups = canvas.getAllByShadowRole('group');
+					expect(groups).toHaveLength(1);
+					canvas.getByShadowRole('group', { name: 'Clipboard' });
+				});
+			},
+		);
 	},
 };
 
@@ -263,31 +250,28 @@ export const WithDisabledItems: Story = {
 			></cosmoz-command-menu>
 		</cosmoz-dropdown-next>
 	`,
-	play: async ({ canvasElement, args, userEvent }) => {
-		await openDropdown(canvasElement, userEvent);
-
-		const menu =
-			canvasElement.querySelector('cosmoz-command-menu') as HTMLElement;
-		const root = menu.shadowRoot!;
-
-		// Wait for all 4 items to render
-		await waitFor(() => {
-			const items = root.querySelectorAll('cosmoz-button[role="menuitem"]');
-			expect(items.length).toBe(4);
+	play: async ({ canvasElement, canvas, args, step, userEvent }) => {
+		await step('Open dropdown', async () => {
+			await openDropdown(canvasElement, userEvent);
 		});
 
-		// Click disabled "Edit" item (index 1) — should NOT fire select
-		const items = root.querySelectorAll('cosmoz-button[role="menuitem"]');
-		const disabledItem = items[1] as HTMLElement;
-		expect(disabledItem.hasAttribute('disabled')).toBe(true);
-		await userEvent.click(disabledItem);
-		await expect(args.onSelect).not.toHaveBeenCalled();
+		await step('Clicking disabled item does not fire select', async () => {
+			const items = await canvas.findAllByShadowRole('menuitem');
+			expect(items).toHaveLength(4);
 
-		// Click enabled "Copy" item (index 0) — should fire select
-		const enabledItem = items[0] as HTMLElement;
-		expect(enabledItem.hasAttribute('disabled')).toBe(false);
-		await userEvent.click(enabledItem);
-		await expect(args.onSelect).toHaveBeenCalledOnce();
+			const disabledItem = items[1];
+			expect(disabledItem.hasAttribute('disabled')).toBe(true);
+			await userEvent.click(disabledItem);
+			await expect(args.onSelect).not.toHaveBeenCalled();
+		});
+
+		await step('Clicking enabled item fires select once', async () => {
+			const items = await canvas.findAllByShadowRole('menuitem');
+			const enabledItem = items[0];
+			expect(enabledItem.hasAttribute('disabled')).toBe(false);
+			await userEvent.click(enabledItem);
+			await expect(args.onSelect).toHaveBeenCalledOnce();
+		});
 	},
 };
 
@@ -325,24 +309,21 @@ export const AsyncSource: Story = {
 			</cosmoz-dropdown-next>
 		`;
 	},
-	play: async ({ canvasElement, userEvent }) => {
-		await openDropdown(canvasElement, userEvent);
+	play: async ({ canvasElement, canvas, step, userEvent }) => {
+		await step('Open dropdown', async () => {
+			await openDropdown(canvasElement, userEvent);
+		});
 
-		const menu =
-			canvasElement.querySelector('cosmoz-command-menu') as HTMLElement;
-		const root = menu.shadowRoot!;
-
-		// After async resolution, items should render and loading should disappear
-		await waitFor(
-			() => {
-				const items = root.querySelectorAll(
-					'cosmoz-button[role="menuitem"]',
-				);
-				expect(items.length).toBe(8);
-				expect(root.querySelector('.loading-text')).toBeNull();
-			},
-			{ timeout: 2000 },
-		);
+		await step('Items load after async delay', async () => {
+			await waitFor(
+				async () => {
+					const items = await canvas.findAllByShadowRole('menuitem');
+					expect(items).toHaveLength(8);
+					expect(canvas.queryByShadowText('Loading...')).toBeNull();
+				},
+				{ timeout: 2000 },
+			);
+		});
 	},
 };
 
@@ -362,33 +343,30 @@ export const FilterMenu: Story = {
 			></cosmoz-command-menu>
 		</cosmoz-dropdown-next>
 	`,
-	play: async ({ canvasElement, userEvent }) => {
-		await openDropdown(canvasElement, userEvent);
-
-		const menu =
-			canvasElement.querySelector('cosmoz-command-menu') as HTMLElement;
-		const root = menu.shadowRoot!;
-
-		// Wait for all 11 filter items to render
-		await waitFor(() => {
-			const items = root.querySelectorAll('cosmoz-button[role="menuitem"]');
-			expect(items.length).toBe(11);
+	play: async ({ canvasElement, canvas, step, userEvent }) => {
+		await step('Open dropdown', async () => {
+			await openDropdown(canvasElement, userEvent);
 		});
 
-		// Assert 3 groups: Status, Priority, Type
-		const labels = root.querySelectorAll('.group-label');
-		expect(labels.length).toBe(3);
-		expect(labels[0].textContent).toContain('Status');
-		expect(labels[1].textContent).toContain('Priority');
-		expect(labels[2].textContent).toContain('Type');
+		await step('Renders 11 items in 3 groups', async () => {
+			const items = await canvas.findAllByShadowRole('menuitem');
+			expect(items).toHaveLength(11);
 
-		// Type "bug" to filter — only 1 item should remain
-		const input = root.querySelector('.search-input') as HTMLInputElement;
-		typeInSearch(input, 'bug');
-		await waitFor(() => {
-			const items = root.querySelectorAll('cosmoz-button[role="menuitem"]');
-			expect(items.length).toBe(1);
-			expect(items[0].textContent).toContain('Bug');
+			const groups = canvas.getAllByShadowRole('group');
+			expect(groups).toHaveLength(3);
+			canvas.getByShadowRole('group', { name: 'Status' });
+			canvas.getByShadowRole('group', { name: 'Priority' });
+			canvas.getByShadowRole('group', { name: 'Type' });
+		});
+
+		await step('Filtering by "bug" shows 1 item', async () => {
+			const input = canvas.getByShadowRole('textbox') as HTMLInputElement;
+			typeInSearch(input, 'bug');
+			await waitFor(async () => {
+				const items = await canvas.findAllByShadowRole('menuitem');
+				expect(items).toHaveLength(1);
+				expect(items[0].textContent).toContain('Bug');
+			});
 		});
 	},
 };

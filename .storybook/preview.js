@@ -2,6 +2,7 @@ import '@neovici/cosmoz-button';
 import '@neovici/cosmoz-tokens';
 import { useKeybindings } from '@neovici/cosmoz-utils/keybindings';
 import { component, html } from '@pionjs/pion';
+import { within as withinShadow } from 'shadow-dom-testing-library';
 import { menuBindings } from '../src/menu-keybindings';
 
 /**
@@ -23,6 +24,10 @@ customElements.define(
 );
 
 export default {
+	// Augment the canvas with shadow-dom-testing-library queries
+	beforeEach({ canvasElement, canvas }) {
+		Object.assign(canvas, { ...withinShadow(canvasElement) });
+	},
 	decorators: [
 		(story, context) => {
 			const isDark = context.globals?.theme === 'dark';
